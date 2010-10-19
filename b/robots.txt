@@ -1,0 +1,8 @@
+user-agent: Baiduspider+
+disallow: /
+
+user-agent: BaiduImagespider
+disallow: /
+
+user-agent: BaiduMobaider
+disallow: /

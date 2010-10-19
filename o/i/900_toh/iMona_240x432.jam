@@ -1,0 +1,15 @@
+PackageURL = imona.jar
+AppSize = 49126
+AppMainTitle = icon160.gif
+AppName = iMona@zuzu_t<board>@240x432
+AppParam = http://o.imona.info/
+DrawArea = 240x432
+AppClass = iMona
+SPsize = 192000
+UseBrowser = launch
+UseNetwork = http
+GetSysInfo = yes
+LastModified = Fri, 08 Feb 2008 18:30:50
+MyConcierge = yes
+LaunchByBrowser = any
+AppIcon = icon48.gif,icon96.gif

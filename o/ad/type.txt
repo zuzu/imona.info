@@ -1,0 +1,5 @@
+# 広告タイプ記述ファイル
+#type1	script1.pl
+#type2	script2.pl
+ad_image	ad_image.pl
+ad_text	ad_text.pl

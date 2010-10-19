@@ -1,0 +1,13 @@
+AppClass = d
+PackageURL = iMona.jar
+AppSize = 36633
+AppName = iMona@zuzu_s<board>@240x386
+AppVer = 0.7.7
+AppParam = http://o.imona.info/ 2.cgi?v=F&m=w&b=
+SPsize = 104000
+UseBrowser = launch
+UseNetwork = http
+GetSysInfo = yes
+LastModified = Thu, 08 Mar 2007 00:36:25
+MyConcierge = yes
+DrawArea = 240x386

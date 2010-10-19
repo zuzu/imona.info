@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/iMonaServer/!svn/ver/2/trunk/src/plugins
+END
+cocolog.pl
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/iMonaServer/!svn/ver/2/trunk/src/plugins/cocolog.pl
+END
+plugins.txt
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/iMonaServer/!svn/ver/2/trunk/src/plugins/plugins.txt
+END
+typepad.pl
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/iMonaServer/!svn/ver/2/trunk/src/plugins/typepad.pl
+END
+rss.pl
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/iMonaServer/!svn/ver/2/trunk/src/plugins/rss.pl
+END
+tenki.pl
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/iMonaServer/!svn/ver/2/trunk/src/plugins/tenki.pl
+END
+pop3client.pl
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/iMonaServer/!svn/ver/2/trunk/src/plugins/pop3client.pl
+END

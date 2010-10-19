@@ -1,0 +1,6 @@
+8000,rss
+8001,typepad
+8002,cocolog
+8010,tenki
+8020,loadimona
+8101,pop3client

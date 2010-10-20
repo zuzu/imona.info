@@ -117,6 +117,7 @@ if($type == "u" and $_POST['boardurl'] = "" and $_POST['boardname'] == ""){
 		$data = file_get_contents($filepass."iMona.jam");
 		$data = str_replace("<size>",$size,$data);
 		$data = str_replace("<boardurl>",$boardurl,$data);
+		$data = str_replace("<board>",$board,$data);
 		$data = $data.$drawarea;
 		$fp = fopen($filepass.$filename."_$size.jam","w");
 		fwrite($fp,$data);

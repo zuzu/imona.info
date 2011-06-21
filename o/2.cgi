@@ -1,9 +1,8 @@
 #!/usr/local/bin/perl
 
 ###################################################################################################
-#!/usr/bin/perperl -- -M3 -r600 -gSakusya
 #
-# 2.cgi
+# 2.cgi Mod(by zuzu) 20101023(memcached)
 #		// 2ch viewer for iαppli,EZappli,Vappli
 #		// [charset:EUC-JP]
 #		// このスクリプトはEUC-JPを前提としてかかれています。他の文字コードに変換すると正常に動作しません。
@@ -32,7 +31,6 @@ $ver2cgi = '1.66';	# このスクリプトのバージョン
 ###################################################################################################
 
 BEGIN {	# 初回起動時のみ
-
 	if(exists $ENV{MOD_PERL}){	# mod_perlで動作しているとき
 		# カレントディレクトリを変更する
 		$cdir = $ENV{SCRIPT_FILENAME};
@@ -61,15 +59,67 @@ BEGIN {	# 初回起動時のみ
 		require Drk::Encode;
 		my $DrkEncode = Drk::Encode->new( ascii => 1 );
 	}
+	if($usememcached == 1){
+		require Cache::Memcached::Fast;
+		
+		#####################################################
+		my $memcached_server   = "127.0.0.1"; # サーバ(IPアドレス)
+		my $memcached_port     = 11211;       # サーバ(ポート)
+		my $memcached_compress = 0;           # 圧縮指定(0:非圧縮)
+		
+		# キー(サブドメインごとに別のキーにする)
+		#@url=split(/\./, $ENV{"HTTP_HOST"});
+		#my $key_namespace = "_".@url[0];
+		my $key_namespace = "_test";
+		
+		my $expires  = 600;         # 有効期間(秒)
+		#####################################################
+		
+		##板一覧のキャッシュ衝突回避
+		#my @brd5cache;
+		#my $brd5mtime;
+		#my $brd5splitcache;
+
+		my $memcached = new Cache::Memcached
+		{
+		  'servers' => ["${server}:${port}"],
+		  'compress_threshold' => $compress
+		};
+		
+		$brd5cache = $memcached->get("brd5cache".$key_prefix);
+		
+		# もしキャッシュがないのなら板一覧を取得＆キャッシュする
+		if(defined(@brd5cache)){
+			@brd5cache = ();
+			@brd5splitcache = ();
+			if(open(DATA, "$brd5")){
+				binmode(DATA);
+				@brd5cache = <DATA>;
+				close(DATA);
+				for($i = 0; $i <= $#brd5cache; $i++){
+					$brd5cache[$i] =~ s/[\r\n]*$//;
+					@{$brd5splitcache[$i]} = split(/\t/, $brd5cache[$i]);
+				}
+			}
+			$memcached->set("brd5cache".$key_prefix, @brd5cache, $expires);
+			$memcached->set("brd5splitcache".$key_prefix, @brd5splitcache, $expires);
+		}else{
+			$brd5splitcache = $memcached->get("brd5splitcache".$key_prefix);
+		}
+
+	}
+
 	####################################
 }
 
-##板一覧のキャッシュ衝突回避
-my @brd5cache;
-my $brd5mtime;
-my $brd5splitcache;
+
+
 
 if(exists $ENV{MOD_PERL}){	# mod_perlで動作しているとき
+	##板一覧のキャッシュ衝突回避
+	#my @brd5cache;
+	#my $brd5mtime;
+	#my $brd5splitcache;
 	# カレントディレクトリを変更する
 	$cdir = $ENV{SCRIPT_FILENAME};
 	$cdir =~ s/\/[^\/]*$//;

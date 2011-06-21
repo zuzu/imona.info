@@ -1,32 +1,3 @@
-<?php
-  $GA_ACCOUNT = "UA-5269279-10";
-  $GA_PIXEL = "ga.php";
-
-  function googleAnalyticsGetImageUrl() {
-    global $GA_ACCOUNT, $GA_PIXEL;
-    $url = "";
-    $url .= $GA_PIXEL . "?";
-    $url .= "utmac=" . $GA_ACCOUNT;
-    $url .= "&utmn=" . rand(0, 0x7fffffff);
-
-    $referer = $_SERVER["HTTP_REFERER"];
-    $query = $_SERVER["QUERY_STRING"];
-    $path = $_SERVER["REQUEST_URI"];
-
-    if (empty($referer)) {
-      $referer = "-";
-    }
-    $url .= "&utmr=" . urlencode($referer);
-
-    if (!empty($path)) {
-      $url .= "&utmp=" . urlencode($path);
-    }
-
-    $url .= "&guid=ON";
-
-    return $url;
-  }
-?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -40,7 +11,7 @@
 <hr>
 <?php include "ad.php"; ?>
 ■連絡<br>
-09/01/10/16:04・新しいサーバーへとお引っ越ししました。iアプリの方は<a href="http://imona.info/iapp.php">ここ</a>から再ダウンロード、Softbank、auの方はアドレスの変更をお願いしますm(_ _)m<br>
+11/06/21/18:52・サーバートラブルのため2010年8月のバックアップへと全て戻しました。不具合などがあれば掲示板へご連絡お願いします。<br>
 <a href="http://d.hatena.ne.jp/zuzu_sion/archivemobile?word=*[iMona]">■ニュース</a><br>
 <a href="http://jbbs.livedoor.jp/internet/3900/">■BBS</a></p>
 ■ダウンロード<br>
@@ -66,9 +37,5 @@ zuzu <br>
 ■<a href="&#109;&#97;ilt&#111;&#58;c&#108;&#111;&#119;&#110;&#46;b&#111;&#121;&#46;z&#117;&#122;u+i&#109;&#111;&#110;a&#64;gma&#105;&#108;&#46;&#99;o&#109;">zuzuへメール</a>
 <br>
 ■<a href="http://imona.k2y.info/saba/">配布サイト一覧</a><br>
-<?php
-  $googleAnalyticsImageUrl = googleAnalyticsGetImageUrl();
-?>
-<img src="<?= $googleAnalyticsImageUrl ?>" />
 </body>
 </html>
